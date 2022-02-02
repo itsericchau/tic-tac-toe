@@ -8,33 +8,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<h1>Tic-Tac-Toe</h1>
 
 <body>
     <div id="modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <p>The game has finished! Would you like to play again?</p>
-            <button class="yes-modal">Yes, again!</button>
-            <button type="no-modal" onclick="window.open('', '_self', ''); window.close()">No, Bye bye!</button>
+            <div>
+                <span class="close-modal">X</span>
+                <p class="modal-p"></p>
+            </div>
+            <div>
+                <button class="yes-modal">Yes, again!</button>
+                <button class="no-modal" type="no-modal" onclick="window.open('', '_self', ''); window.close()">No, Bye
+                    bye!</button>
+            </div>
         </div>
-
     </div>
-    <section class="tttBox">
-        <div class="box1"></div>
-        <div class="box2"></div>
-        <div class="box3"></div>
-        <div class="box4"></div>
-        <div class="box5"></div>
-        <div class="box6"></div>
-        <div class="box7"></div>
-        <div class="box8"></div>
-        <div class="box9"></div>
-    </section>
+
+    <header>
+        <h1>Tic-Tac-Toe</h1>
+        <p class="subtitle"> To start press on any box!</p>
+    </header>
+
+    <main>
+        <section class="player-one">
+            <h2>Player 1 (Pick Your Player)</h2>
+            <div class="player-list1">
+                <img id="female" src="./images/female.png" alt="Player 1">
+                <img id="mrsalt1" src="./images/mrsalt.jpeg" alt="Player 1">
+                <img id="mrspepper1" src="./images/mrspepper.jpeg" alt="Player 1">
+                <img id="blue" src="./images/blue.png" alt="Player 1">
+            </div>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eaque atque dolor nisi, distinctio temporibus
+                ullam? Rem, quae placeat tenetur labore quod nisi, blanditiis impedit accusantium illo amet, magni id
+                necessitatibus.
+            </p>
+        </section>
+        <section class="tttBox">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+            <div class="box4"></div>
+            <div class="box5"></div>
+            <div class="box6"></div>
+            <div class="box7"></div>
+            <div class="box8"></div>
+            <div class="box9"></div>
+        </section>
+        <section class="player-two">
+            <h2>Player 2 (Pick Your Player)</h2>
+            <div class="players-list2">
+                <img id="female" src="./images/male.png" alt="Player 2">
+                <img id="mrsalt2" src="./images/mrsalt.jpeg" alt="Player 2">
+                <img id="mrspepper2" src="./images/mrspepper.jpeg" alt="Player 2">
+                <img id="magenta" src="./images/magenta.png" alt="Player 2">
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem placeat non suscipit dignissimos natus
+                eaque officia odit ratione soluta, magni sed iure minus quos debitis consequuntur alias itaque quae ea.
+            </p>
+        </section>
+    </main>
 
     <footer>
-        by Chun Chau 2022
+        <p class="copyright">by Chun Chau 2022</p>
     </footer>
+
     <script src="main.js"></script>
 </body>
 
