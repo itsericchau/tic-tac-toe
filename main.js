@@ -1,4 +1,5 @@
 var numMoves = 0
+var numGames = 0
 var box1 = document.querySelector('.box1')
 var box2 = document.querySelector('.box2')
 var box3 = document.querySelector('.box3')
@@ -8,14 +9,34 @@ var box6 = document.querySelector('.box6')
 var box7 = document.querySelector('.box7')
 var box8 = document.querySelector('.box8')
 var box9 = document.querySelector('.box9')
-var playerList1 = document.querySelector('.players-list1')
-var playerList2 = document.querySelector('.players-list2')
+var playerList1 = document.querySelector('.player-list1')
+var playerList2 = document.querySelector('.player-list2')
+var playerOneSection = document.querySelector('.player-one')
+var playerTwoSection = document.querySelector('.player-two')
 var tttBox = document.querySelector('.tttBox')
 var modal = document.querySelector(".myModal")
 var yesBtn = document.querySelector(".yes-modal")
 var subtitle = document.querySelector(".subtitle")
 var modal = document.querySelector(".modal")
 var span = document.querySelector(".close-modal")
+
+function selectPlayerOne(event) {
+    var boxClicked = event.target
+    playerList1.style.visibility = 'hidden';
+    boxClicked.style.visibility = 'visible';
+    var changePlayer = document.querySelector('.player-one h2')
+    changePlayer.textContent = boxClicked.getAttribute('alt')
+    // playerOneSection.style.backgroundColor = '';
+    // boxClicked.style.border = ''
+}
+
+function selectPlayerTwo(event) {
+    var boxClicked = event.target
+    playerList2.style.visibility = 'hidden'
+    boxClicked.style.visibility = 'visible'
+    var changePlayer = document.querySelector('.player-two h2')
+    changePlayer.textContent = boxClicked.getAttribute('alt')
+}
 
 function playerOneTurn(event) {
     var boxClicked = event.target
@@ -88,6 +109,20 @@ function checker() {
     }
 }
 
+function backgroundChange() {
+    if (numGames % 3 === 1) {
+        // document.querySelector('body').style.background = 'url(./images/blue-background.jpg) no-repeat center center fixed;'
+        document.querySelector('body').style.backgroundImage = 'url(./images/blue-background.jpg)'
+
+    } else if (numGames % 3 === 2) {
+        // document.querySelector('body').style.background = 'url(./images/blues-house.jpg) no-repeat center center fixed;'
+        document.querySelector('body').style.backgroundImage = 'url(./images/blues-house.png)'
+
+    } else {
+        document.querySelector('body').style.backgroundImage = 'url(./images/blues-room.jpeg)'
+    }
+}
+
 function resetBoard() {
     numMoves = 0
     box1.textContent = ''
@@ -110,11 +145,15 @@ function resetBoard() {
     box9.style.backgroundColor = ''
     modal.style.display = "none";
     subtitle.textContent = "Welcome back! It is Player One's turn!"
+    numGames += 1
+    backgroundChange()
+    
 }
 
 yesBtn.addEventListener('click', resetBoard)
 tttBox.addEventListener('click', swapPlayer)
-
+playerList1.addEventListener('click', selectPlayerOne)
+playerList2.addEventListener('click', selectPlayerTwo)
 
 span.addEventListener('click', function () {
     modal.style.display = "none";

@@ -9,8 +9,18 @@ body {
 
 h1,
 .subtitle {
+    font-size: 2rem;
     text-align: center;
     color: whitesmoke;
+}
+
+h1 {
+    font-family: 'Permanent Marker', cursive;
+
+}
+
+h2 {
+    font-family: 'Indie Flower', cursive;
 }
 
 main {
@@ -45,6 +55,7 @@ main {
     width: fit-content;
     justify-items: center;
     background-color: rgba(0, 0, 0, 0.4);
+    padding: 10px;
 }
 
 .players-list1,
@@ -57,14 +68,21 @@ main {
 
 .player-one img,
 .player-two img {
-    border: 5px solid #ffffff;
     background-color: #ffffff;
     border-radius: 5px;
     width: 100px;
     height: 100px;
 }
 
-#female {
+.player-one img {
+    border: 5px double #ad5fbb;
+}
+
+.player-two img {
+    border: 5px double #5fbbb7;
+}
+
+/* #female {
     border: 5px dashed #ad5fbb;
     background-color: rgba(100, 219, 255, 0.87);
 }
@@ -72,18 +90,19 @@ main {
 .male {
     border: 5px dashed #5fbbb7;
     background-color: rgba(100, 219, 255, 0.87);
-}
+} */
 
 .player-one p,
 .player-two p {
     background-color: rgb(255, 101, 101, 0.7);
-    border: 5px outset rgb(100, 219, 255);
+    border: 5px dashed rgb(110, 6, 6);
     max-width: 400px;
     padding: 10px;
 }
 
 .copyright {
     float: right;
+    color: whitesmoke;
 }
 
 /* The Modal (background) */
@@ -112,6 +131,7 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-size: 2rem;
 }
 
 .yes-modal,
