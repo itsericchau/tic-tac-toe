@@ -8,20 +8,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<h1>Tic-Tac-Toe</h1>
 
 <body>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <p>The game has finished! Would you like to play again?</p>
+            <button class="yes-modal">Yes, again!</button>
+            <button type="no-modal" onclick="window.open('', '_self', ''); window.close()">No, Bye bye!</button>
+        </div>
+
+    </div>
     <section class="tttBox">
-        <div class="box1">1</div>
-        <div class="box2">2</div>
-        <div class="box3">3</div>
-        <div class="box4">4</div>
-        <div class="box5">5</div>
-        <div class="box6">6</div>
-        <div class="box7">7</div>
-        <div class="box8">8</div>
-        <div class="box9">9</div>
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+        <div class="box5"></div>
+        <div class="box6"></div>
+        <div class="box7"></div>
+        <div class="box8"></div>
+        <div class="box9"></div>
     </section>
 
+    <footer>
+        by Chun Chau 2022
+    </footer>
     <script src="main.js"></script>
 </body>
 

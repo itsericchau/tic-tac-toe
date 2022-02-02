@@ -9,66 +9,58 @@ var box7 = document.querySelector('.box7')
 var box8 = document.querySelector('.box8')
 var box9 = document.querySelector('.box9')
 var tttBox = document.querySelector('.tttBox')
+var modal = document.querySelector(".myModal");
+var yesBtn = document.querySelector(".yes-modal");
 
-// function playerOneTurn(event) {
-//     var boxClicked = event.target
-//     if (boxClicked.tagName === 'DIV') {
-//         boxClicked.style.backgroundColor = 'red'
-//     }
-//     // var boxClicked = event.target
-//     // console.log(boxClicked)
-//     // if (boxClicked.tagName.toLowerCase() === 'div') {
-//     //     boxClicked.style.backgroundColor = "red"
-//     // }
-// }
+var modal = document.querySelector(".modal");
+var span = document.getElementsByClassName("close-modal")[0];
 
-// function playerTwoTurn(event) {
-//     var boxClicked = event.target
-//     if (boxClicked.tagName === 'DIV') {
-//         boxClicked.style.backgroundColor = 'blue'
-//     }
-// }
 
-// function swapPlayer(){
-//     if (numMoves % 2 === 0) {
-//         playerOneTurn()
-//     } else {
-//         playerTwoTurn()
-//     }
-// }
+span.onclick = function () {
+    modal.style.display = "none";
+}
 
-function swapPlayer(event) {
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function playerOneTurn(event) {
+    var boxClicked = event.target
+    if (boxClicked.style.backgroundColor === 'red' || boxClicked.style.backgroundColor === 'blue') {
+        // dont need to do anything
+    } else {
+        boxClicked.style.backgroundColor = 'red'
+        boxClicked.textContent = 'X'
+        boxClicked.style.fontSize = '50px'
+        numMoves += 1
+    }
+}
+
+function playerTwoTurn(event) {
     var boxClicked = event.target
     if (boxClicked.tagName === 'DIV') {
-        if (numMoves % 2 === 0) {
-            if (boxClicked.style.backgroundColor === 'red' || boxClicked.style.backgroundColor === 'blue') {
-                // dont need to do anything
-            } else {
-                boxClicked.style.backgroundColor = 'red'
-                boxClicked.textContent = 'X'
-                boxClicked.style.fontSize = '50px'
-                //var getClass = boxClicked.getAttribute('class')
-                numMoves += 1
-            }
-        } else if (numMoves % 2 !== 0) {
-            if (boxClicked.style.backgroundColor === 'red' || boxClicked.style.backgroundColor === 'blue') {
-                // dont need to do anything
-            } else {
-                boxClicked.style.backgroundColor = 'blue'
-                boxClicked.textContent = 'O'
-                boxClicked.style.fontSize = '50px'
-                numMoves += 1
-            }
+        if (boxClicked.style.backgroundColor === 'red' || boxClicked.style.backgroundColor === 'blue') {
+            // dont need to do anything
+        } else {
+            boxClicked.style.backgroundColor = 'blue'
+            boxClicked.textContent = 'O'
+            boxClicked.style.fontSize = '50px'
+            numMoves += 1
         }
     }
-    console.log(boxClicked)
+}
+
+function swapPlayer(event) {
+    if (numMoves % 2 === 0) {
+        playerOneTurn(event)
+    } else {
+        playerTwoTurn(event)
+    }
     checker()
 }
 
-tttBox.addEventListener('click', swapPlayer)
-
-
-// win check
 function checker() {
     if ((box1.textContent === 'X' && box2.textContent === 'X' && box3.textContent === 'X') ||
         (box4.textContent === 'X' && box5.textContent === 'X' && box6.textContent === 'X') ||
@@ -79,7 +71,8 @@ function checker() {
         (box3.textContent === 'X' && box6.textContent === 'X' && box9.textContent === 'X') ||
         (box1.textContent === 'X' && box5.textContent === 'X' && box9.textContent === 'X') ||
         (box3.textContent === 'X' && box5.textContent === 'X' && box7.textContent === 'X')) {
-        console.log('we have a winner')
+        modal.style.display = "block"
+        modal.querySelector('p').textContent = "Player 1 is our winner! Would you like to play again?"
 
     } else if ((box1.textContent === 'O' && box2.textContent === 'O' && box3.textContent === 'O') ||
         (box4.textContent === 'O' && box5.textContent === 'O' && box6.textContent === 'O') ||
@@ -90,11 +83,63 @@ function checker() {
         (box3.textContent === 'O' && box6.textContent === 'O' && box9.textContent === 'O') ||
         (box1.textContent === 'O' && box5.textContent === 'O' && box9.textContent === 'O') ||
         (box3.textContent === 'O' && box5.textContent === 'O' && box7.textContent === 'O')) {
-        console.log('we have a winner')
+        modal.style.display = "block"
+        modal.querySelector('p').textContent = "Player 2 is our winner! Would you like to play again?"
 
     } else if (numMoves === 9) {
-        console.log('we have a draw')
-    } else {
-        console.log('keep playing')
+        modal.style.display = "block"
+        modal.querySelector('p').textContent = "We have a draw! Would you like to play again?"
     }
 }
+
+function resetBoard() {
+    numMoves = 0
+    box1.textContent = ''
+    box2.textContent = ''
+    box3.textContent = ''
+    box4.textContent = ''
+    box5.textContent = ''
+    box6.textContent = ''
+    box7.textContent = ''
+    box8.textContent = ''
+    box9.textContent = ''
+    box1.style.backgroundColor = ''
+    box2.style.backgroundColor = ''
+    box3.style.backgroundColor = ''
+    box4.style.backgroundColor = ''
+    box5.style.backgroundColor = ''
+    box6.style.backgroundColor = ''
+    box7.style.backgroundColor = ''
+    box8.style.backgroundColor = ''
+    box9.style.backgroundColor = ''
+    modal.style.display = "none";
+}
+
+function endBoard() {
+    box1.textContent = ''
+    box2.textContent = 'Thank'
+    box3.textContent = ''
+    box4.textContent = ''
+    box5.textContent = 'You'
+    box6.textContent = ''
+    box7.textContent = ''
+    box8.textContent = 'For Playing'
+    box9.textContent = ''
+    box1.style.backgroundColor = ''
+    box2.style.backgroundColor = ''
+    box3.style.backgroundColor = ''
+    box4.style.backgroundColor = ''
+    box5.style.backgroundColor = ''
+    box6.style.backgroundColor = ''
+    box7.style.backgroundColor = ''
+    box8.style.backgroundColor = ''
+    box9.style.backgroundColor = ''
+    modal.style.display = "none";
+}
+
+function changeModal() {
+
+}
+
+yesBtn.addEventListener('click', resetBoard)
+tttBox.addEventListener('click', swapPlayer)
