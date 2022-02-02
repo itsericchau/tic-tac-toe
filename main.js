@@ -1,5 +1,6 @@
 var numMoves = 0
 var numGames = 0
+var playerSwap = false
 var box1 = document.querySelector('.box1')
 var box2 = document.querySelector('.box2')
 var box3 = document.querySelector('.box3')
@@ -14,7 +15,6 @@ var playerList2 = document.querySelector('.player-list2')
 var playerOneSection = document.querySelector('.player-one')
 var playerTwoSection = document.querySelector('.player-two')
 var tttBox = document.querySelector('.tttBox')
-var modal = document.querySelector(".myModal")
 var yesBtn = document.querySelector(".yes-modal")
 var subtitle = document.querySelector(".subtitle")
 var modal = document.querySelector(".modal")
@@ -23,6 +23,7 @@ var span = document.querySelector(".close-modal")
 function selectPlayerOne(event) {
     var boxClicked = event.target
     playerList1.style.visibility = 'hidden';
+    // playerOneSection.style.visibility = 'hidden';
     boxClicked.style.visibility = 'visible';
     var changePlayer = document.querySelector('.player-one h2')
     changePlayer.textContent = boxClicked.getAttribute('alt')
@@ -66,10 +67,18 @@ function playerTwoTurn(event) {
 
 function swapPlayer(event) {
     if (event.target.tagName === 'DIV') {
-        if (numMoves % 2 === 0) {
-            playerOneTurn(event)
+        if (playerSwap === true) {
+            if (numMoves % 2 === 1) {
+                playerOneTurn(event)
+            } else {
+                playerTwoTurn(event)
+            }
         } else {
-            playerTwoTurn(event)
+            if (numMoves % 2 === 0) {
+                playerOneTurn(event)
+            } else {
+                playerTwoTurn(event)
+            }
         }
     }
     checker()
@@ -88,6 +97,7 @@ function checker() {
         modal.style.display = "flex"
         modal.querySelector('p').textContent = "Player 1 is our winner! Would you like to play again?"
         subtitle.textContent = "We have a winner!"
+        playerSwap = true
 
     } else if ((box1.textContent === 'O' && box2.textContent === 'O' && box3.textContent === 'O') ||
         (box4.textContent === 'O' && box5.textContent === 'O' && box6.textContent === 'O') ||
@@ -101,6 +111,7 @@ function checker() {
         modal.style.display = "flex"
         modal.querySelector('p').textContent = "Player 2 is our winner! Would you like to play again?"
         subtitle.textContent = "We have a winner!"
+        playerSwap = false
 
     } else if (numMoves === 9) {
         modal.style.display = "flex"
@@ -116,7 +127,7 @@ function backgroundChange() {
 
     } else if (numGames % 3 === 2) {
         // document.querySelector('body').style.background = 'url(./images/blues-house.jpg) no-repeat center center fixed;'
-        document.querySelector('body').style.backgroundImage = 'url(./images/blues-house.png)'
+        document.querySelector('body').style.backgroundImage = 'url(./images/blues-kitchen.jpeg)'
 
     } else {
         document.querySelector('body').style.backgroundImage = 'url(./images/blues-room.jpeg)'
@@ -144,10 +155,16 @@ function resetBoard() {
     box8.style.backgroundColor = ''
     box9.style.backgroundColor = ''
     modal.style.display = "none";
-    subtitle.textContent = "Welcome back! It is Player One's turn!"
     numGames += 1
     backgroundChange()
-    
+
+    if (modal.querySelector('p').textContent === "Player 2 is our winner! Would you like to play again?") {
+        subtitle.textContent = "Welcome back! It is Player One's turn!"
+    } else if (modal.querySelector('p').textContent === "Player 1 is our winner! Would you like to play again?") {
+        subtitle.textContent = "Welcome back! It is Player Two's turn!"
+    } else {
+        console.log('error')
+    }
 }
 
 yesBtn.addEventListener('click', resetBoard)

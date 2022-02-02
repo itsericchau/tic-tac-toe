@@ -60,10 +60,9 @@ main {
 
 .players-list1,
 .players-list2 {
-    display: flex;
+    display: grid;
     align-items: center;
     gap: 2px;
-
 }
 
 .player-one img,
