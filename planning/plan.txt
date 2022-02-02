@@ -1,3 +1,41 @@
+-------------------------------------------------------------------
+boxes are arranged:
+b1 b2 b3
+b4 b5 b6
+b7 b8 b9
+
+--declare variables for two players p1 p2
+var p1 = something
+var p2 = something
+
+--declare winning states with function call, within function call have winning states checked
+function checkp1 () {
+    add X character into clicked div
+if box1-box3 are all X
+else if b1b4b7
+else if b2b5b8
+else if b3b6b9
+else if b4-b6
+else if b7-b9
+}
+* repeat for p2
+
+let player place an X when first div box is clicked then O and rotate
+
+div.addElementListener ('click', checkp1/checkp2)
+
+everytime div box is clicked check if state is win/draw 
+if three in a row its a win otherwise if grid is full or 9 clicks then game ends
+
+if b1-b9 are all filled {
+    call checkp1/checkp2
+    declare draw
+}
+
+ask if player wants to restart game
+
+------------------------------------------------------------------
+
 Make grid 3x3 spaces
 - display grid
 - even spaces size (square)
