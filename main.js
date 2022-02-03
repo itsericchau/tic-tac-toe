@@ -26,6 +26,8 @@ var changeBtn = document.querySelector(".change-modal")
 var subtitle = document.querySelector(".subtitle")
 var modal = document.querySelector(".modal")
 var spanModal = document.querySelector(".close-modal")
+var audio = document.querySelector('.audio')
+audio.volume = 0.5
 
 function selectPlayerOne(event) {
     var boxClicked = event.target

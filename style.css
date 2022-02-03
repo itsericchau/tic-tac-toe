@@ -160,6 +160,12 @@ main {
     animation: fadeinout 1s infinite;
 }
 
+audio {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
 @-webkit-keyframes fadein {
 
     0% {
