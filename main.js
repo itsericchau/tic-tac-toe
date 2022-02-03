@@ -78,7 +78,7 @@ function playerTwoTurn(event) {
 
 function giveTurnToPlayerTwo() {
     subtitle.textContent = "Player Two's Turn!"
-    playerTwoHeading.textContent = `It's your turn! \uD83D\uDC3E`
+    playerTwoHeading.textContent = `It's your turn ${document.querySelector('.picked-two').getAttribute('alt')}! \uD83D\uDC3E`
     playerOneHeading.textContent = ``
     playerTwoSection.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
     playerOneSection.style.backgroundColor = 'transparent'
@@ -86,7 +86,7 @@ function giveTurnToPlayerTwo() {
 
 function giveTurnToPlayerOne() {
     subtitle.textContent = "Player One's Turn!"
-    playerOneHeading.textContent = `It's your turn! \uD83D\uDC3E `
+    playerOneHeading.textContent = `It's your turn ${document.querySelector('.picked-one').getAttribute('alt')}! \uD83D\uDC3E `
     playerTwoHeading.textContent = ``
     playerOneSection.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
     playerTwoSection.style.backgroundColor = 'transparent'
@@ -130,8 +130,6 @@ function checkIfPlayersPicked() {
         playerList1.style.display = 'flex'
         playerOneHeading.textContent = document.querySelector('#blue').getAttribute('alt')
         playerOneSection.style.backgroundColor = 'transparent'
-    } else {
-        console.log('both picked')
     }
 }
 
@@ -150,8 +148,9 @@ function resetPlayers() {
     playerList2.style.display = 'grid'
     playerTwoSection.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
     modal.style.display = "none"
-    playerOneHeading.textContent = `Select new Player`
-    playerTwoHeading.textContent = `Select new Player`
+    playerOneHeading.textContent = `Select new Player One`
+    playerTwoHeading.textContent = `Select new Player Two`
+    resetBoard()
 }
 
 function swapPlayer(event) {
