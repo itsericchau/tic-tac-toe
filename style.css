@@ -16,6 +16,7 @@ h1 {
 
 h2 {
     font-family: 'Indie Flower', cursive;
+    text-align: center;
 }
 
 main {
@@ -57,6 +58,7 @@ main {
     justify-items: center;
     background-color: rgba(0, 0, 0, 0.4);
     padding: 10px;
+    border-radius: 5px;
 }
 
 .player-list1,
@@ -76,7 +78,7 @@ main {
 
 .player-one img:hover,
 .player-two img:hover {
-    opacity: 60%;
+    opacity: 70%;
     cursor: pointer;
 }
 
