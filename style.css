@@ -48,6 +48,7 @@ main {
 .tttBox div:hover {
     opacity: 70%;
     cursor: pointer;
+    opacity: 70%;
 }
 
 .player-one,
@@ -78,8 +79,9 @@ main {
 
 .player-one img:hover,
 .player-two img:hover {
-    opacity: 70%;
     cursor: pointer;
+    -webkit-animation: fadeinout 2s infinite;
+    animation: fadeinout 2s infinite;
 }
 
 .player-one img {
@@ -155,6 +157,7 @@ main {
 .change-modal:hover {
     color: violet;
     cursor: pointer;
+    animation: fadeinout 1s infinite;
 }
 
 @-webkit-keyframes fadein {
@@ -176,5 +179,26 @@ main {
 
     100% {
         opacity: 1;
+    }
+}
+@-webkit-keyframes fadeinout {
+
+    100%, 0%{
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeinout {
+
+    100%, 0%{
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
     }
 }

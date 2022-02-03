@@ -209,7 +209,7 @@ function checker() {
         (box3.textContent === 'X' && box5.textContent === 'X' && box7.textContent === 'X')) {
         modal.style.display = "flex"
         modal.querySelector('p').textContent = `Player One ${document.querySelector('.picked-one').getAttribute('alt')} is our winner! Would you like to play again?`
-        subtitle.textContent = "We have a winner"
+        subtitle.textContent = `${document.querySelector('.picked-one').getAttribute('alt')} won the game!`
         coverUnusedTiles()
         playerSwap = true
         lastGameDraw = false
@@ -224,7 +224,7 @@ function checker() {
         (box3.textContent === 'O' && box5.textContent === 'O' && box7.textContent === 'O')) {
         modal.style.display = "flex"
         modal.querySelector('p').textContent = `Player Two ${document.querySelector('.picked-two').getAttribute('alt')} is our winner! Would you like to play again?"`
-        subtitle.textContent = "We have a winner!"
+        subtitle.textContent = `${document.querySelector('.picked-two').getAttribute('alt')} won the game!`
         coverUnusedTiles()
         playerSwap = false
         lastGameDraw = false
