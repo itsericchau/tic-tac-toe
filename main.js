@@ -94,7 +94,7 @@ function giveTurnToPlayerOne() {
 }
 
 function checkIfPlayersPicked() {
-    if ((document.querySelector('.picked-one') == null) && (document.querySelector('.picked-two') == null)) {
+    if (((document.querySelector('.picked-one') == null) && (document.querySelector('.picked-two') == null)) || ((document.querySelector('.picked-one') == '') && (document.querySelector('.picked-two') == ''))) {
         for (var i = 0; i < playerOneImages.length; i++) {
             playerOneImages[i].style.display = 'none'
         }
@@ -134,17 +134,16 @@ function checkIfPlayersPicked() {
     }
 }
 
-function resetPlayers() {
+function resetPlayerChoice() {
     for (var i = 0; i < playerOneImages.length; i++) {
         playerOneImages[i].style.display = 'block'
-        playerOneImages[i].className = ''
+        playerOneImages[i].className = null
     }
     playerList1.style.display = 'grid'
     playerOneSection.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
-
     for (var i = 0; i < playerTwoImages.length; i++) {
         playerTwoImages[i].style.display = 'block'
-        playerTwoImages[i].className = ''
+        playerTwoImages[i].className = null
     }
     playerList2.style.display = 'grid'
     playerTwoSection.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
@@ -171,7 +170,7 @@ function swapPlayer(event) {
             }
         }
     }
-    checker()
+    checkWinOrDraw()
 }
 
 function resetBoard() {
@@ -180,6 +179,7 @@ function resetBoard() {
         document.querySelectorAll('.tttBox div')[i].textContent = ''
         document.querySelectorAll('.tttBox div')[i].style.backgroundColor = ''
     }
+
     modal.style.display = "none"
     numGames += 1
     backgroundChange()
@@ -188,9 +188,9 @@ function resetBoard() {
 
 function drawResolver() {
     if (playerSwap === true && lastGameDraw === true) {
-        giveTurnToPlayerTwo()
+        subtitle.textContent = "Player Two's Turn!"
     } else if (playerSwap === false && lastGameDraw === true) {
-        giveTurnToPlayerOne()
+        subtitle.textContent = "Player One's Turn!"
     } else if (playerSwap === true && lastGameDraw === false) {
         subtitle.textContent = "Player Two's Turn!"
     } else if (playerSwap === false && lastGameDraw === false) {
@@ -198,7 +198,7 @@ function drawResolver() {
     }
 }
 
-function checker() {
+function checkWinOrDraw() {
     if ((box1.textContent === 'X' && box2.textContent === 'X' && box3.textContent === 'X') ||
         (box4.textContent === 'X' && box5.textContent === 'X' && box6.textContent === 'X') ||
         (box7.textContent === 'X' && box8.textContent === 'X' && box9.textContent === 'X') ||
@@ -259,7 +259,7 @@ function coverUnusedTiles() {
 }
 
 yesBtn.addEventListener('click', resetBoard)
-changeBtn.addEventListener('click', resetPlayers)
+changeBtn.addEventListener('click', resetPlayerChoice)
 tttBox.addEventListener('click', swapPlayer)
 playerList1.addEventListener('click', selectPlayerOne)
 playerList2.addEventListener('click', selectPlayerTwo)
