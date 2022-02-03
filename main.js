@@ -2,6 +2,7 @@ var numMoves = 0
 var numGames = 0
 var playerSwap = false
 var lastGameDraw = false
+var hiddenCounter = 0
 var box1 = document.querySelector('.box1')
 var box2 = document.querySelector('.box2')
 var box3 = document.querySelector('.box3')
@@ -24,7 +25,7 @@ var yesBtn = document.querySelector(".yes-modal")
 var changeBtn = document.querySelector(".change-modal")
 var subtitle = document.querySelector(".subtitle")
 var modal = document.querySelector(".modal")
-var span = document.querySelector(".close-modal")
+var spanModal = document.querySelector(".close-modal")
 
 function selectPlayerOne(event) {
     var boxClicked = event.target
@@ -263,12 +264,30 @@ tttBox.addEventListener('click', swapPlayer)
 playerList1.addEventListener('click', selectPlayerOne)
 playerList2.addEventListener('click', selectPlayerTwo)
 
-span.addEventListener('click', function () {
+spanModal.addEventListener('click', function () {
     modal.style.display = "none";
 })
 
 window.addEventListener('click', function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }
+})
+
+document.querySelector('.hidden-button').addEventListener('click', function () {
+    subtitle.textContent = "You found a secret button!"
+    numGames += 1
+    backgroundChange()
+})
+
+document.querySelector('.easter-egg').addEventListener('click', function () {
+    subtitle.textContent = "You found an easter egg!"
+
+    if (hiddenCounter >= 7) {
+        hiddenCounter = 0
+        document.querySelector('html').style.cursor = `url(./images/handpointer${hiddenCounter}.cur), auto`
+    } else {
+        hiddenCounter += 1
+        document.querySelector('html').style.cursor = `url(./images/handpointer${hiddenCounter}.cur), auto`
     }
 })

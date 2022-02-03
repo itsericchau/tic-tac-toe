@@ -1,3 +1,6 @@
+html{
+    cursor: url(./images/handpointer0.cur), auto;
+}
 body {
     background: url(./images/blues-room.jpeg) no-repeat center center fixed;
     background-size: cover;
@@ -47,8 +50,7 @@ main {
 }
 .tttBox div:hover {
     opacity: 70%;
-    cursor: pointer;
-    opacity: 70%;
+    	
 }
 
 .player-one,
@@ -79,7 +81,6 @@ main {
 
 .player-one img:hover,
 .player-two img:hover {
-    cursor: pointer;
     -webkit-animation: fadeinout 2s infinite;
     animation: fadeinout 2s infinite;
 }
@@ -156,7 +157,6 @@ main {
 .no-modal:hover,
 .change-modal:hover {
     color: violet;
-    cursor: pointer;
     animation: fadeinout 1s infinite;
 }
 
