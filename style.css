@@ -3,7 +3,7 @@
 } */
 
 body {
-    background: url(./images/blues-room.jpeg) no-repeat center center fixed;
+    background-image: url(./images/blues-room.jpeg);
     background-size: cover;
 }
 
@@ -16,7 +16,6 @@ h1,
 
 h1 {
     font-family: 'Permanent Marker', cursive;
-
 }
 
 h2 {
@@ -25,7 +24,9 @@ h2 {
 
 main {
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-columns: 300px 350px 300px;
+    justify-content: center;
+    align-items: center;
     justify-items: center;
 }
 
@@ -58,10 +59,10 @@ main {
     padding: 10px;
 }
 
-.players-list1,
-.players-list2 {
+.player-list1,
+.player-list2 {
     display: grid;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
     gap: 2px;
 }
 
@@ -95,8 +96,8 @@ main {
 .player-two p {
     background-color: rgb(255, 101, 101, 0.7);
     border: 5px dashed rgb(110, 6, 6);
-    max-width: 400px;
     padding: 10px;
+    display: none;
 }
 
 .copyright {
@@ -130,12 +131,14 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-family: 'Indie Flower', cursive;
     font-size: 2rem;
 }
 
 .yes-modal,
 .no-modal {
     font-size: 2rem;
+    font-family: 'Permanent Marker', cursive;
 }
 
 .close-modal {
