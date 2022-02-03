@@ -21,16 +21,10 @@ var playerOneImages = document.querySelectorAll('.player-list1 img')
 var playerTwoImages = document.querySelectorAll('.player-list2 img')
 var tttBox = document.querySelector('.tttBox')
 var yesBtn = document.querySelector(".yes-modal")
+var changeBtn = document.querySelector(".change-modal")
 var subtitle = document.querySelector(".subtitle")
 var modal = document.querySelector(".modal")
 var span = document.querySelector(".close-modal")
-
-// ///////////////////
-// console.log(`numGames: ${numGames}`)
-// console.log(`numMoves: ${numMoves}`)
-// console.log(`plerySwap: ${playerSwap}`)
-// console.log(`lastGameDraw: ${lastGameDraw}`)
-// console.log('----------')
 
 function selectPlayerOne(event) {
     var boxClicked = event.target
@@ -38,6 +32,7 @@ function selectPlayerOne(event) {
         document.querySelectorAll('.player-list1 img')[i].style.display = 'none'
     }
     boxClicked.style.display = 'block'
+    boxClicked.className = 'picked-one'
     playerList1.style.display = 'flex'
     playerOneHeading.textContent = boxClicked.getAttribute('alt')
     playerOneSection.style.backgroundColor = 'transparent'
@@ -45,10 +40,11 @@ function selectPlayerOne(event) {
 
 function selectPlayerTwo(event) {
     var boxClicked = event.target
-    for (var i = 0; i < playerOneImages.length; i++) {
+    for (var i = 0; i < playerTwoImages.length; i++) {
         playerTwoImages[i].style.display = 'none'
     }
     boxClicked.style.display = 'block'
+    boxClicked.className = 'picked-two'
     playerList2.style.display = 'flex'
     playerTwoHeading.textContent = boxClicked.getAttribute('alt')
     playerTwoSection.style.backgroundColor = 'transparent'
@@ -57,7 +53,7 @@ function selectPlayerTwo(event) {
 function playerOneTurn(event) {
     var boxClicked = event.target
     if (boxClicked.textContent === 'X' || boxClicked.textContent === 'O') {
-        // dont need to do anything
+        // dont do anything
     } else {
         boxClicked.style.backgroundColor = '#ad5fbb'
         boxClicked.textContent = 'X'
@@ -70,7 +66,7 @@ function playerTwoTurn(event) {
     var boxClicked = event.target
     if (boxClicked.tagName === 'DIV') {
         if (boxClicked.textContent === 'X' || boxClicked.textContent === 'O') {
-            // dont need to do anything
+            // dont do anything
         } else {
             boxClicked.style.backgroundColor = '#5fbbb7'
             boxClicked.textContent = 'O'
@@ -97,14 +93,65 @@ function giveTurnToPlayerOne() {
 }
 
 function checkIfPlayersPicked() {
-    if ((playerList1.style.display !== 'flex') && (playerList2.style.display !== 'flex')) {
-        playerOneSection.style.visibility = 'hidden'
-        playerTwoSection.style.visibility = 'hidden'
-    } else if ((playerList1.style.display !== 'flex') && (playerList2.style.display === 'flex')) {
-        playerOneSection.style.visibility = 'hidden'
-    } else if ((playerList1.style.display === 'flex') && (playerList2.style.display !== 'flex')) {
-        playerTwoSection.style.visibility = 'hidden'
+    if ((document.querySelector('.picked-one') == null) && (document.querySelector('.picked-two') == null)) {
+        for (var i = 0; i < playerOneImages.length; i++) {
+            document.querySelectorAll('.player-list1 img')[i].style.display = 'none'
+        }
+        document.querySelector('#blue').style.display = 'block'
+        document.querySelector('#blue').className = 'picked-one'
+        playerList1.style.display = 'flex'
+        playerOneHeading.textContent = document.querySelector('#blue').getAttribute('alt')
+        playerOneSection.style.backgroundColor = 'transparent'
+
+        for (var i = 0; i < playerTwoImages.length; i++) {
+            playerTwoImages[i].style.display = 'none'
+        }
+        document.querySelector('#magenta').style.display = 'block'
+        document.querySelector('#magenta').className = 'picked-two'
+        playerList2.style.display = 'flex'
+        playerTwoHeading.textContent = document.querySelector('#magenta').getAttribute('alt')
+        playerTwoSection.style.backgroundColor = 'transparent'
+
+    } else if ((document.querySelector('.picked-one') !== null) && (document.querySelector('.picked-two') == null)) {
+        for (var i = 0; i < playerTwoImages.length; i++) {
+            playerTwoImages[i].style.display = 'none'
+        }
+        document.querySelector('#magenta').style.display = 'block'
+        document.querySelector('#magenta').className = 'picked-two'
+        playerList2.style.display = 'flex'
+        playerTwoHeading.textContent = document.querySelector('#magenta').getAttribute('alt')
+        playerTwoSection.style.backgroundColor = 'transparent'
+    } else if ((document.querySelector('.picked-one') == null) && (document.querySelector('.picked-two') !== null)) {
+        for (var i = 0; i < playerOneImages.length; i++) {
+            document.querySelectorAll('.player-list1 img')[i].style.display = 'none'
+        }
+        document.querySelector('#blue').style.display = 'block'
+        document.querySelector('#blue').className = 'picked-one'
+        playerList1.style.display = 'flex'
+        playerOneHeading.textContent = document.querySelector('#blue').getAttribute('alt')
+        playerOneSection.style.backgroundColor = 'transparent'
+    } else {
+        console.log('both picked')
     }
+}
+
+function resetPlayers() {
+    for (var i = 0; i < playerOneImages.length; i++) {
+        playerOneImages[i].style.display = 'block'
+        playerOneImages[i].className = ''
+    }
+    playerList1.style.display = 'grid'
+    playerOneSection.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
+
+    for (var i = 0; i < playerTwoImages.length; i++) {
+        playerTwoImages[i].style.display = 'block'
+        playerTwoImages[i].className = ''
+    }
+    playerList2.style.display = 'grid'
+    playerTwoSection.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
+    modal.style.display = "none"
+    playerOneHeading.textContent = `Select new Player`
+    playerTwoHeading.textContent = `Select new Player`
 }
 
 function swapPlayer(event) {
@@ -133,12 +180,10 @@ function resetBoard() {
         document.querySelectorAll('.tttBox div')[i].textContent = ''
         document.querySelectorAll('.tttBox div')[i].style.backgroundColor = ''
     }
-    modal.style.display = "none";
+    modal.style.display = "none"
     numGames += 1
     backgroundChange()
     drawResolver()
-    playerOneSection.style.visibility = 'visible'
-    playerTwoSection.style.visibility = 'visible'
 }
 
 function drawResolver() {
@@ -192,19 +237,19 @@ function checker() {
 
 function backgroundChange() {
     if (numGames % 3 === 1) {
-        // document.querySelector('body').style.background = 'url(./images/blue-background.jpg) no-repeat center center fixed;'
-        document.querySelector('body').style.backgroundImage = 'url(./images/blue-background.jpg)'
-
+        document.querySelector('body').style.background = 'url(./images/blues-kitchen.jpeg) no-repeat center center fixed'
+        document.querySelector('body').style.backgroundSize = 'cover'
     } else if (numGames % 3 === 2) {
-        // document.querySelector('body').style.background = 'url(./images/blues-house.jpg) no-repeat center center fixed;'
-        document.querySelector('body').style.backgroundImage = 'url(./images/blues-kitchen.jpeg)'
-
+        document.querySelector('body').style.background = 'url(./images/blue-background.jpg) no-repeat center center fixed'
+        document.querySelector('body').style.backgroundSize = 'cover'
     } else {
-        document.querySelector('body').style.backgroundImage = 'url(./images/blues-room.jpeg)'
+        document.querySelector('body').style.background = 'url(./images/blues-room.jpeg) no-repeat center center fixed'
+        document.querySelector('body').style.backgroundSize = 'cover'
     }
 }
 
 yesBtn.addEventListener('click', resetBoard)
+changeBtn.addEventListener('click', resetPlayers)
 tttBox.addEventListener('click', swapPlayer)
 playerList1.addEventListener('click', selectPlayerOne)
 playerList2.addEventListener('click', selectPlayerTwo)

@@ -3,7 +3,7 @@
 } */
 
 body {
-    background-image: url(./images/blues-room.jpeg);
+    background: url(./images/blues-room.jpeg) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -136,7 +136,8 @@ main {
 }
 
 .yes-modal,
-.no-modal {
+.no-modal,
+.change-modal{
     font-size: 2rem;
     font-family: 'Permanent Marker', cursive;
 }
@@ -150,7 +151,8 @@ main {
 .close-modal:hover,
 .close-modal:focus,
 .yes-modal:hover,
-.no-modal:hover {
+.no-modal:hover,
+.change-modal:hover {
     color: violet;
     cursor: pointer;
 }
