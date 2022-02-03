@@ -1,6 +1,7 @@
 var numMoves = 0
 var numGames = 0
 var playerSwap = false
+var lastGameDraw = false
 var box1 = document.querySelector('.box1')
 var box2 = document.querySelector('.box2')
 var box3 = document.querySelector('.box3')
@@ -24,6 +25,13 @@ var subtitle = document.querySelector(".subtitle")
 var modal = document.querySelector(".modal")
 var span = document.querySelector(".close-modal")
 
+// ///////////////////
+// console.log(`numGames: ${numGames}`)
+// console.log(`numMoves: ${numMoves}`)
+// console.log(`plerySwap: ${playerSwap}`)
+// console.log(`lastGameDraw: ${lastGameDraw}`)
+// console.log('----------')
+
 function selectPlayerOne(event) {
     var boxClicked = event.target
     for (var i = 0; i < playerOneImages.length; i++) {
@@ -33,7 +41,6 @@ function selectPlayerOne(event) {
     playerList1.style.display = 'flex'
     playerOneHeading.textContent = boxClicked.getAttribute('alt')
     playerOneSection.style.backgroundColor = 'transparent'
-    // boxClicked.style.border = ''
 }
 
 function selectPlayerTwo(event) {
@@ -54,7 +61,7 @@ function playerOneTurn(event) {
     } else {
         boxClicked.style.backgroundColor = '#ad5fbb'
         boxClicked.textContent = 'X'
-        turnMessageOne()
+        giveTurnToPlayerTwo()
         numMoves += 1
     }
 }
@@ -67,29 +74,41 @@ function playerTwoTurn(event) {
         } else {
             boxClicked.style.backgroundColor = '#5fbbb7'
             boxClicked.textContent = 'O'
-            turnMessageTwo()
+            giveTurnToPlayerOne()
             numMoves += 1
         }
     }
 }
 
-function turnMessageOne() {
+function giveTurnToPlayerTwo() {
     subtitle.textContent = "Player Two's Turn!"
-    playerTwoHeading.textContent = `It's your turn!`
+    playerTwoHeading.textContent = `It's your turn! \uD83D\uDC3E`
     playerOneHeading.textContent = ``
     playerTwoSection.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
     playerOneSection.style.backgroundColor = 'transparent'
 }
 
-function turnMessageTwo() {
+function giveTurnToPlayerOne() {
     subtitle.textContent = "Player One's Turn!"
-    playerOneHeading.textContent = `It's your turn!`
+    playerOneHeading.textContent = `It's your turn! \uD83D\uDC3E `
     playerTwoHeading.textContent = ``
     playerOneSection.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
     playerTwoSection.style.backgroundColor = 'transparent'
 }
 
+function checkIfPlayersPicked() {
+    if ((playerList1.style.display !== 'flex') && (playerList2.style.display !== 'flex')) {
+        playerOneSection.style.visibility = 'hidden'
+        playerTwoSection.style.visibility = 'hidden'
+    } else if ((playerList1.style.display !== 'flex') && (playerList2.style.display === 'flex')) {
+        playerOneSection.style.visibility = 'hidden'
+    } else if ((playerList1.style.display === 'flex') && (playerList2.style.display !== 'flex')) {
+        playerTwoSection.style.visibility = 'hidden'
+    }
+}
+
 function swapPlayer(event) {
+    checkIfPlayersPicked()
     if (event.target.tagName === 'DIV') {
         if (playerSwap === true) {
             if (numMoves % 2 === 0) {
@@ -117,20 +136,20 @@ function resetBoard() {
     modal.style.display = "none";
     numGames += 1
     backgroundChange()
-    if (modal.querySelector('p').textContent === "Player Two is our winner! Would you like to play again?") {
-        subtitle.textContent = "Welcome back! It is Player One's turn!"
-        playerSwap = false
-    } else if (modal.querySelector('p').textContent === "Player One is our winner! Would you like to play again?") {
-        subtitle.textContent = "Welcome back! It is Player Two's turn!"
-        playerSwap = true
-    } else {
-        if (playerSwap === false) {
-            turnMessageOne()
-            playerSwap = true
-        } else {
-            turnMessageTwo()
-            playerSwap = false
-        }
+    drawResolver()
+    playerOneSection.style.visibility = 'visible'
+    playerTwoSection.style.visibility = 'visible'
+}
+
+function drawResolver() {
+    if (playerSwap === true && lastGameDraw === true) {
+        giveTurnToPlayerTwo()
+    } else if (playerSwap === false && lastGameDraw === true) {
+        giveTurnToPlayerOne()
+    } else if (playerSwap === true && lastGameDraw === false) {
+        subtitle.textContent = "Player Two's Turn!"
+    } else if (playerSwap === false && lastGameDraw === false) {
+        subtitle.textContent = "Player Ones's Turn!"
     }
 }
 
@@ -146,9 +165,9 @@ function checker() {
         (box3.textContent === 'X' && box5.textContent === 'X' && box7.textContent === 'X')) {
         modal.style.display = "flex"
         modal.querySelector('p').textContent = "Player One is our winner! Would you like to play again?"
-        subtitle.textContent = "We have a winner!"
-
-
+        subtitle.textContent = "We have a winner"
+        playerSwap = true
+        lastGameDraw = false
     } else if ((box1.textContent === 'O' && box2.textContent === 'O' && box3.textContent === 'O') ||
         (box4.textContent === 'O' && box5.textContent === 'O' && box6.textContent === 'O') ||
         (box7.textContent === 'O' && box8.textContent === 'O' && box9.textContent === 'O') ||
@@ -161,12 +180,13 @@ function checker() {
         modal.style.display = "flex"
         modal.querySelector('p').textContent = "Player Two is our winner! Would you like to play again?"
         subtitle.textContent = "We have a winner!"
-
-
+        playerSwap = false
+        lastGameDraw = false
     } else if (numMoves === 9) {
         modal.style.display = "flex"
         modal.querySelector('p').textContent = "We have a draw! Would you like to play again?"
         subtitle.textContent = "Draw!"
+        lastGameDraw = true
     }
 }
 
