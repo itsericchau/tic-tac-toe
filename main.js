@@ -3,6 +3,7 @@ var numGames = 0
 var playerSwap = false
 var lastGameDraw = false
 var hiddenCounter = 0
+var audioActive = false
 var box1 = document.querySelector('.box1')
 var box2 = document.querySelector('.box2')
 var box3 = document.querySelector('.box3')
@@ -155,8 +156,6 @@ function resetPlayerChoice() {
 }
 
 function swapPlayer(event) {
-    audio.volume = 0.5
-    audio.play()
     checkIfPlayersPicked()
     if (event.target.tagName === 'DIV') {
         if (playerSwap === true) {
@@ -269,6 +268,17 @@ playerList2.addEventListener('click', selectPlayerTwo)
 
 spanModal.addEventListener('click', function () {
     modal.style.display = "none";
+})
+
+document.querySelector('.music').addEventListener('click', function () {
+    // console.log('hello')
+    if (audioActive === false) {
+        audio.play()
+        audioActive = true
+    } else {
+        audio.pause()
+        audioActive = false
+    }
 })
 
 window.addEventListener('click', function (event) {
