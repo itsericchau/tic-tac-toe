@@ -4,6 +4,14 @@ Play the game: https://chunchau.github.io/tic-tac-toe/
 
 Try to win the game by getting three in a row on a 3x3 grid between 2 human players
 
+
+![Homepage] (https://i.imgur.com/DYTTriL.png)
+
+![Blue & Magenta] (https://i.imgur.com/ddCuj6x.png)
+
+![Mrs Pepper and Mr Salt] (https://i.imgur.com/4I5KIyW.png)
+
+
 # Known Limitations
 
 3x3 grid only
@@ -23,6 +31,7 @@ Favicon
 Custom fonts
 Custom icons
 
+![Module popup] (https://i.imgur.com/JaYwos3.png)
 # What didn't get added
 
 Extra screens, layers more hidden/invisible items
