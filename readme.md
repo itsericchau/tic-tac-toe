@@ -1,4 +1,4 @@
-Play the game here!: [https://itsericchau.github.io/tic-tac-toe/] https://itsericchau.github.io/tic-tac-toe/
+Play the game here!: https://itsericchau.github.io/tic-tac-toe/
 
 # Tic Tac Toe
 ## A Blues Clues theme noughts and crosses app
