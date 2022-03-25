@@ -1,7 +1,7 @@
 Play the game here!: [https://itsericchau.github.io/tic-tac-toe/] https://itsericchau.github.io/tic-tac-toe/
 
 # Tic Tac Toe
-## A Blues Clues theme tic-tac-toe app
+## A Blues Clues theme noughts and crosses app
 Try to win the game by getting three in a row on a 3x3 grid between 2 human players
 
 
