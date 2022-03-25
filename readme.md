@@ -1,7 +1,7 @@
-Play the game here!: https://chunchau.github.io/tic-tac-toe/
+Play the game here!: [https://itsericchau.github.io/tic-tac-toe/] https://itsericchau.github.io/tic-tac-toe/
 
 # Tic Tac Toe
-## A Blues Clues theme tic-tac-toe.
+## A Blues Clues theme tic-tac-toe app
 Try to win the game by getting three in a row on a 3x3 grid between 2 human players
 
 
@@ -39,11 +39,10 @@ Try to win the game by getting three in a row on a 3x3 grid between 2 human play
 - Extra screens, layers more hidden/invisible items
 - Menu
 - Sounds for more buttons
-- Game counters
+- Game score counters
 - More text, quotes, funny
 - A way to eliminate player selection based on user choices
 
 # What would you do differently next time?
-
-- Have a less child friendly theme
+- make it mobile first or a responsive design
 - Use array for win checks, less hard code
